@@ -68,18 +68,8 @@ public class ToMapCollectorTest {
 
     @Test
     void personPerFirstNameAndLastName() {
-
-        //// TODO : commit solution
-        Map<String, Person> personPerFirstNameAndLastName = persons
-                .stream()
-                .collect(Collectors.toMap(
-                        person -> person.getFirstName() + person.getLastName(),
-                        Function.identity()
-                        )
-                );
-
-//        Map<String, Person> personPerFirstNameAndLastName = null;// TODO
-
+        // Ex: utiliser comme key à la fois le nom et le prénom
+        Map<String, Person> personPerFirstNameAndLastName = null;// TODO
         assertThat(personPerFirstNameAndLastName).hasSize(3);
         assertThat(personPerFirstNameAndLastName.get("jeanbon")).isNotNull();
         assertThat(personPerFirstNameAndLastName.get("johndo")).isNotNull();
@@ -90,19 +80,7 @@ public class ToMapCollectorTest {
     void youngestPersonPerTownWithKeyConflict(){
 
         // Ex : obtenir une map avec comme clef la ville de la personne. En cas de conflict, garder la personne la plus jeune
-
-        //// TODO : commit solution
-        Map<Integer, Person> personPerAge = persons
-                .stream()
-                .collect(Collectors.toMap(
-                        person -> person.getAge(),
-                        Function.identity(),
-                        (a, b) -> a
-                        )
-                );
-//
-//        Map<Integer, Person> personPerAge = null; //TODO
-
+        Map<Integer, Person> personPerAge = null; //TODO
         assertThat(personPerAge).hasSize(2);
         assertThat(personPerAge.get(10).getFirstName()).isEqualTo("jean");
         assertThat(personPerAge.get(30).getFirstName()).isEqualTo("john");
@@ -111,18 +89,8 @@ public class ToMapCollectorTest {
 
     @Test
     void otherMapSupplier(){
-        TreeMap<String, Person> personPerFirstNameAndLastNameOrdered = persons
-                .stream()
-                .collect(Collectors.toMap(
-                        person -> person.getFirstName() + person.getLastName(),
-                        Function.identity(),
-                        (a, b) -> a,
-                        TreeMap::new
-                        )
-                );
-
-        //Map<String, Person> personPerFirstNameAndLastName = null;// TODO
-
+        // Ex : modifier le supplier pour utiliser un TreeMap à la place d'une HashMap
+        TreeMap<String, Person> personPerFirstNameAndLastNameOrdered = null;// TODO
         assertThat(personPerFirstNameAndLastNameOrdered.firstEntry().getValue().getFirstName()).isEqualTo("janne");
     }
 

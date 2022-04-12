@@ -71,14 +71,8 @@ public class FlatmapTest {
     @Test
     void allGmailComEmailsBetterExample(){
 
-        //// TODO : commit solution
-                List<String> gmailAddressList = persons.stream()
-                .flatMap(person -> person.getEmails().stream())
-                .filter(email -> email.endsWith("@gmail.com"))
-                .collect(Collectors.toList());
 
-//
-//        List<String> gmailAddressList = null;
+        List<String> gmailAddressList = null; // TODO
 
         assertThat(gmailAddressList)
                 .hasSize(2)

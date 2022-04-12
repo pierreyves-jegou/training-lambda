@@ -58,44 +58,30 @@ public class CustomCollectorTest {
     }
 
     public Collector<Person, List<String>, Map<String, Long>> emailStatisticCollectorBuilder(){
-        return new Collector<>() {
+        return new Collector<Person, List<String>, Map<String, Long>>() {
             @Override
             public Supplier<List<String>> supplier() {
-                return () -> new ArrayList<>();
+                return null;
             }
 
             @Override
             public BiConsumer<List<String>, Person> accumulator() {
-                return (list, person) -> {
-                    Pattern emailPattern = Pattern.compile(".*@(.*)");
-                    person.getEmails().forEach(email -> {
-                        Matcher matcher = emailPattern.matcher(email);
-                        if(matcher.find()){
-                            list.add(matcher.group(1));
-                        }
-                    });
-                };
+                return null;
             }
 
             @Override
             public BinaryOperator<List<String>> combiner() {
-                return (list1, list2) -> {
-                    List mergeList = new ArrayList();
-                    mergeList.addAll(list1);
-                    mergeList.addAll(list2);
-                    return mergeList;
-                };
+                return null;
             }
 
             @Override
             public Function<List<String>, Map<String, Long>> finisher() {
-                return list ->
-                    list.stream().collect(Collectors.groupingBy(val -> val, Collectors.counting()));
+                return null;
             }
 
             @Override
             public Set<Characteristics> characteristics() {
-                return Set.of(Characteristics.CONCURRENT);
+                return null;
             }
         };
     }
@@ -107,7 +93,6 @@ public class CustomCollectorTest {
                 .stream()
                 .collect(emailStatisticCollectorBuilder());
 
-        //Map<String, Long> emailProviderStatistics = null; //TODO
         System.out.println(emailProviderStatistics);
         assertThat(emailProviderStatistics.get("cgi.com")).isEqualTo(2);
         assertThat(emailProviderStatistics.get("yahoo.fr")).isEqualTo(1);

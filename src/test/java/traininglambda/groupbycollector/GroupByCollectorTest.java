@@ -49,10 +49,7 @@ public class GroupByCollectorTest {
     @Test
     void groupBySex() {
 
-        //TODO : Solution
-        Map<String, List<Person>> personsBySex = persons.stream().collect(Collectors.groupingBy(person -> person.getSex()));
-
-        /*Map<String, List<Person>> personsBySex = null; //TODO*/
+        Map<String, List<Person>> personsBySex = null; //TODO
 
         assertThat(personsBySex.size()).isEqualTo(2);
         assertThat(personsBySex.get("M"))
@@ -65,19 +62,8 @@ public class GroupByCollectorTest {
 
     @Test
     void groupBySexAndMajorMinor() {
-
-        //TODO : Solution
-        Map<String, Map<Boolean, List<Person>>> personsBySexAndMajorMinor = persons
-                .stream()
-                .collect(
-                        groupingBy(person -> person.getSex(),
-                                partitioningBy(person -> person.getAge() >= 18))
-                );
-
-
-
         // Grouper les personnes par sexe puis par minor/majeur
-//        Map<String, Map<Boolean, List<Person>>> personsBySexAndMajorMinor = null; //TODO
+        Map<String, Map<Boolean, List<Person>>> personsBySexAndMajorMinor = null; //TODO
         assertThat(personsBySexAndMajorMinor).hasSize(2);
         assertThat(personsBySexAndMajorMinor.get("M").get(Boolean.FALSE)).containsExactlyInAnyOrder(jeanBon);
         assertThat(personsBySexAndMajorMinor.get("M").get(Boolean.TRUE)).containsExactlyInAnyOrder(johnDo);
@@ -86,33 +72,16 @@ public class GroupByCollectorTest {
 
     @Test
     void averageAgeBySex(){
-//TODO : Solution
-        Map<String, Double> personsBySexAndAverageAge = persons
-                .stream()
-                .collect(
-                        groupingBy(person -> person.getSex(),
-                                averagingInt(Person::getAge))
-                );
-
         // Obtenir la moyenne d'age par sexe
-//        Map<String, Double> personsBySexAndAverageAge = null;
+        Map<String, Double> personsBySexAndAverageAge = null;
         assertThat(personsBySexAndAverageAge.get("M")).isEqualTo(20.0);
         assertThat(personsBySexAndAverageAge.get("F")).isEqualTo(18.0);
     }
 
     @Test
     void plusJeunePersonParSex(){
-
-        //TODO : Solution
-        Map<String, Optional<Person>> youngestPersonPerSex = persons
-                .stream()
-                .collect(
-                        groupingBy(person -> person.getSex(),
-                                minBy(Comparator.comparingInt(Person::getAge)))
-                );
-
-        // Obtenir la personne la plus jeune par sexe
-//        Map<String, Optional<Person>> youngestPersonPerSex = null;
+          // Obtenir la personne la plus jeune par sexe
+        Map<String, Optional<Person>> youngestPersonPerSex = null;
         assertThat(youngestPersonPerSex.get("M").get()).isEqualTo(jeanBon);
         assertThat(youngestPersonPerSex.get("F").get()).isEqualTo(janneDo);
     }
@@ -120,17 +89,8 @@ public class GroupByCollectorTest {
 
     @Test
     void plusJeuneAgeParSex(){
-
-        //TODO : Solution
-        Map<String, Integer> minimumAgePerSex = persons
-                .stream()
-                .collect(
-                        groupingBy(person -> person.getSex(),
-                                collectingAndThen(minBy(Comparator.comparingInt(Person::getAge)), person -> person.get().getAge()))
-                );
-
         // Obtenir la personne la plus jeune par sexe
-//        Map<String, Integer> minimumAgePerSex = null;
+        Map<String, Integer> minimumAgePerSex = null;
         assertThat(minimumAgePerSex.get("M")).isEqualTo(10);
         assertThat(minimumAgePerSex.get("F")).isEqualTo(18);
     }

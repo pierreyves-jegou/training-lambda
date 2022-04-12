@@ -67,16 +67,7 @@ public class KeepTheContextTest {
     void recupererIdPersonEtAdressePourAdresseEnFrance(){
         // Exo2 :  avec 1 lambda, récuperer l'identifiant et l'adresse si celle ci est 'France'
 
-        //// TODO : commit solution
-        List<Pair<Integer, Address>> idAndAddressInFrance = persons.stream()
-                .flatMap(person -> person.getAddresses()
-                        .stream()
-                        .map(address -> Pair.of(person.getId(), address))
-                ).filter(pair -> "France".equals(pair.getRight().getCountry()))
-                .collect(Collectors.toList());
-
-
-//        List<Pair<Integer, Address>> idAndAddressInFrance = null;
+      List<Pair<Integer, Address>> idAndAddressInFrance = null; // TODO
         assertThat(idAndAddressInFrance)
                 .hasSize(2)
                 .containsExactlyInAnyOrder(
