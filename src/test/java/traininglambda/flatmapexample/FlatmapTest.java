@@ -54,14 +54,7 @@ public class FlatmapTest {
     @Test
     void allGmailComEmailsBadExample() {
         // Récupérer toutes les adresses gmail
-        List<String> gmailAddressList = new ArrayList<>();
-        persons.stream()
-                .map(person -> person.getEmails())
-                .forEach(emails -> {
-                    gmailAddressList.addAll(emails.stream()
-                            .filter(email -> email.endsWith("@gmail.com"))
-                            .collect(Collectors.toList()));
-                });
+        List<String> gmailAddressList = null; //TODO
 
         assertThat(gmailAddressList)
                 .hasSize(2)
