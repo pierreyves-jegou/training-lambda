@@ -48,9 +48,8 @@ public class GroupByCollectorTest {
 
     @Test
     void groupBySex() {
-
+        // Grouper les personnes par sexe
         Map<String, List<Person>> personsBySex = null; //TODO
-
         assertThat(personsBySex.size()).isEqualTo(2);
         assertThat(personsBySex.get("M"))
                 .hasSize(2)
